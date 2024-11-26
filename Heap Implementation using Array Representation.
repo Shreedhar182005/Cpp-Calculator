@@ -1,0 +1,154 @@
+// You are using GCC
+#include<iostream>
+using namespace std;
+//Function to insert in a heap 
+
+
+void insert(int A[], int &n, int x){
+    A[n]=x;
+    int i = n;
+    n++;
+    while(i>0){
+        int p = (i-1)/2;
+        if(A[p]<A[i]){
+            swap(A[p],A[i]);
+            i = p;
+        }
+        else{
+            break;
+        }
+    }
+}
+
+
+
+
+//function for a max heap
+void maxheapify(int A[], int n, int i){
+    int large = i;
+    int left = (2*i)+1;
+    int right = (2*i)+2;
+    if(left<n && A[large]<A[left]){
+        large = left;
+    }
+    if(right<n && A[large]<A[right]){
+        large = right;
+    }
+    if(large != i ){
+        swap(A[large], A[i]);
+        maxheapify(A,n,large);
+    }
+}
+
+
+//function for min heapify'
+
+void minheapify(int A[], int n, int i){
+    int small = i;
+    int left = (2*i)+1;
+    int right = (2*i)+2;
+    if(left<n && A[small]>A[left]){
+        small = left;
+    }
+    if(right<n && A[small]>A[right]){
+        small = right;
+    }
+    if(small != i ){
+        swap(A[small], A[i]);
+        minheapify(A,n,small);
+    }
+}
+
+
+
+//Function for deletion from a heap.
+
+void del(int A[], int &n){
+    if(n<=0){
+        cout<<"Empty heap";
+        return;
+    }
+    A[0]=A[n-1];
+    n--;
+    maxheapify(A,n,0);
+}
+
+
+
+//function to sort a heap in ascending order.
+
+void Sort_Asc(int A[], int n){
+    for(int i = n/2-1 ; i >= 0 ; i--){
+        maxheapify(A,n,i);
+    }
+    for(int i = n-1 ; i>=0 ;i--){
+        swap(A[0],A[i]);
+        maxheapify(A,i,0);
+    }
+}
+
+//function to sort a heap in descending order.
+
+void Sort_Dsc(int A[], int n){
+    for(int i = n/2-1 ; i >= 0 ; i--){
+        minheapify(A,n,i);
+    }
+    for(int i = n-1 ; i>=0 ;i--){
+        swap(A[0],A[i]);
+        minheapify(A,i,0);
+    }
+}
+
+//The main Function.
+
+int main(){
+    int n;
+    cin>>n;
+    int A[n];
+    
+    for(int i = 0 ; i < n; i++){
+        cin>>A[i];
+    }
+    
+    cout<<"Original Heap: ";
+    for(int i = 0 ; i < n; i++){
+        cout<<A[i]<<" ";
+    }
+    
+    cout<<endl;
+    
+    int x;
+    cin>>x;
+    
+    insert(A,n,x);
+    
+    cout<<"After insertion of "<<x<<" wala taam jhaam: ";
+    for(int i = 0 ; i < n; i++){
+        cout<<A[i]<<" ";
+    }
+    cout<<endl;
+    cout<<"After deletion: ";
+    
+    del(A,n);
+    
+    for(int i = 0 ; i < n; i++){
+        cout<<A[i]<<" ";
+    }
+    
+    cout<<endl;
+    
+    Sort_Asc(A,n);
+    cout<<"After Sort in ascending : ";
+    for(int i = 0 ; i < n; i++){
+        cout<<A[i]<<" ";
+    }
+    cout<<endl;
+    
+    Sort_Dsc(A,n);
+    cout<<"After Sort in descending : ";
+    for(int i = 0 ; i < n; i++){
+        cout<<A[i]<<" ";
+    }
+    
+    
+}
