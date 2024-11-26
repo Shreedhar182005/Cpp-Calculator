@@ -1,0 +1,14 @@
+This project will help you with th practical implementation of the Heap Data Structure;
+
+Heaps are Hirarichal Data Structures that are balanced and at most contains two childern per node.
+
+int the given source code you will be able to accomplish Heap operations using ARRAY Representation.
+
+Following Operation Can be performed :
+1) Building Trees
+2) insertion
+3) Deletion
+4) Sort (Ascending)
+5) Sort (Descending)
+6) Minheapification
+7) Maxheapification
